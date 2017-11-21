@@ -40,7 +40,7 @@ public class RequestQueueDemoActivity extends BaseActivity<String>
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            //开始请求
+            // 开始请求
             case R.id.request_button:
                 for (int i = 0; i < mSign.length; i++) {
                     // 发送多个请求
@@ -52,7 +52,7 @@ public class RequestQueueDemoActivity extends BaseActivity<String>
                             .requestRxNoHttp();
                 }
                 break;
-            //撤销请求
+            // 撤销请求
             case R.id.request_button1:
                 RxNoHttpUtils.cancel(mSign[9]);
                 RxNoHttpUtils.cancel(mSign[7]);
@@ -63,7 +63,7 @@ public class RequestQueueDemoActivity extends BaseActivity<String>
 
     @Override
     public void onNext(String response) {
-        mResponse += "喂,叫你了!不要看美女,看我,看我呀....\n请求成功时间：" + getTime() + "\n<<<请求成功内容：" + response + ">>>\n\n";
+        mResponse += "喂,叫你了!不要看美女,看我,看我呀....\n请求成功时间：" + getTime() + "\n请求成功内容：\n<<< " + response + " >>>\n\n";
         mContent.setText(mResponse);
     }
 
