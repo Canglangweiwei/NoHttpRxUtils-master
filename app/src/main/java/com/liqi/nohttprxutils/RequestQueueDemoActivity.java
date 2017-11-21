@@ -13,11 +13,13 @@ import java.text.SimpleDateFormat;
  * 队列请求演示界面
  * Created by LiQi on 2016/12/30.
  */
-public class RequestQueueDemoActivity extends BaseActivity<String> implements View.OnClickListener {
-    private Button mRequestButton, mRequestButton1;
+public class RequestQueueDemoActivity extends BaseActivity<String>
+        implements View.OnClickListener {
+
     private TextView mContent;
     private String mResponse = "";
-    //测试请求标签
+
+    // 测试请求标签
     private Object mSign[] = {new Object(), new Object(),
             new Object(), new Object(), new Object(),
             new Object(), new Object(), new Object(),
@@ -26,11 +28,11 @@ public class RequestQueueDemoActivity extends BaseActivity<String> implements Vi
     @Override
     protected void onCreate() {
         setContentView(R.layout.request_queue_activity);
-        mRequestButton = $(R.id.request_button);
+        Button mRequestButton = $(R.id.request_button);
         mRequestButton.setOnClickListener(this);
         mRequestButton.setAlpha(0.6f);
         mContent = $(R.id.request_content);
-        mRequestButton1 = $(R.id.request_button1);
+        Button mRequestButton1 = $(R.id.request_button1);
         mRequestButton1.setOnClickListener(this);
         mRequestButton1.setAlpha(0.6f);
     }
@@ -41,7 +43,7 @@ public class RequestQueueDemoActivity extends BaseActivity<String> implements Vi
             //开始请求
             case R.id.request_button:
                 for (int i = 0; i < mSign.length; i++) {
-                    //发送多个请求
+                    // 发送多个请求
                     RxNoHttpUtils.rxNohttpRequest()
                             .get()
                             .url(StaticHttpUrl.getGetUrl("LiQi" + i + "" + i + "" + i, "LiQi.pass", 20, "1"))
@@ -80,7 +82,7 @@ public class RequestQueueDemoActivity extends BaseActivity<String> implements Vi
     protected void onDestroy() {
         super.onDestroy();
         //取消RX线程池中所有的请求
-       // RxNoHttpUtils.cancelAll();
+        // RxNoHttpUtils.cancelAll();
         //取消批量Sign对应的请求
         RxNoHttpUtils.cancel(mSign);
     }
